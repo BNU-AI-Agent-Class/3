@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>译途星球 · 小星</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #1a1a3e;
+    --bg-mid: #2d2b55;
+    --pink: #ffb5c2;
+    --pink-dim: #e8a0b0;
+    --gold: #FFEAA7;
+    --white: #faf8f5;
+    --glass: rgba(255,255,255,0.08);
+    --glass-hover: rgba(255,255,255,0.14);
+    --glass-border: rgba(255,255,255,0.12);
+    --font-heading: "Noto Serif SC", "STSong", "SimSun", serif;
+    --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family: var(--font-body);
+    background: linear-gradient(170deg, #1a1a3e 0%, #2a1f4a 15%, #3d2b5a 40%, #5c3d7a 65%, #c97d9e 85%, #ffb5c2 100%);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    color: var(--white);
+  }
+
+  /* ═══════ 首页 ═══════ */
+  #home {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 24px 30px;
+    position: relative;
+  }
+  .slogan {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 30px rgba(255,234,167,0.5);
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .sub-slogan {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+
+  /* 星球 */
+  .planet-wrap {
+    position: relative;
+    width: 200px; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .planet-glow {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,181,194,0.4) 0%, rgba(181,216,235,0.25) 40%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.15);opacity:1} }
+  .planet-ring {
+    position: absolute;
+    width: 210px; height: 210px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255,255,255,0.15);
+    animation: spin 25s linear infinite;
+  }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .planet-ball {
+    position: relative;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #FFD3E0, #e8a7c8 35%, #B5D8EB 65%, #7eb8d4);
+    box-shadow: 0 0 50px rgba(255,181,194,0.4), 0 0 90px rgba(181,216,235,0.25);
+    animation: float 6s ease-in-out infinite;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    z-index: 2;
+    border: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 30%{transform:translateY(-10px)} 60%{transform:translateY(-3px)} }
+  .planet-tip {
+    position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: rgba(255,255,255,0.5); white-space: nowrap;
+    animation: tipFade 2s ease-in-out infinite;
+  }
+  @keyframes tipFade { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
+
+  /* 星星 */
+  .stars-layer {
+    position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  }
+  .stars-layer > * { pointer-events: auto; }
+  .star {
+    position: absolute;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    animation: twinkle 3s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  @keyframes twinkle { 0%,100%{opacity:0.55;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
+
+  /* 按钮 */
+  .entry-row {
+    display: flex; gap: 12px; width: 100%; max-width: 360px;
+    margin: 20px 0 12px;
+  }
+  .entry-btn {
+    flex: 1;
+    padding: 18px 12px;
+    border-radius: 18px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    font-family: var(--font-body);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .entry-btn:active {
+    background: var(--glass-hover);
+    transform: scale(0.96);
+  }
+  .entry-btn .emoji { font-size: 28px; }
+  .entry-btn .title { font-size: 14px; font-weight: 600; letter-spacing: 1px; }
+  .entry-btn .sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+  .social-proof {
+    font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1px;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* 鼓励语 toast */
+  .toast {
+    position: fixed; top: 30%; left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(30,28,60,0.92);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--gold);
+    padding: 14px 24px;
+    border-radius: 18px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-align: center;
+    z-index: 999;
+    pointer-events: none;
+    animation: toastAnim 2s ease forwards;
+  }
+  @keyframes toastAnim {
+    0% { opacity:0; transform:translate(-50%,-50%) scale(0.6); }
+    20% { opacity:1; transform:translate(-50%,-50%) scale(1.05); }
+    30% { transform:translate(-50%,-50%) scale(1); }
+    70% { opacity:1; }
+    100% { opacity:0; transform:translate(-50%,-70%) scale(0.95); }
+  }
+
+  /* ═══════ 聊天区 ═══════ */
+  #chat-view {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: linear-gradient(180deg, #1a1a3e, #2d2b55);
+    flex-direction: column;
+  }
+  #chat-view.open { display: flex; }
+
+  .chat-header {
+    padding: 10px 16px;
+    background: rgba(10,10,30,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .chat-header .back {
+    font-size: 18px; background: none; border: none; color: rgba(255,255,255,0.6);
+    cursor: pointer; padding: 6px 10px;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+  .chat-header .title {
+    font-family: var(--font-heading); font-size: 15px; color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .chat-header .crisis {
+    font-size: 11px; background: rgba(231,76,60,0.2);
+    border: 1px solid rgba(231,76,60,0.35);
+    color: #fff; border-radius: 14px; padding: 6px 12px;
+    cursor: pointer; white-space: nowrap;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+
+  #msg-list {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .msg {
+    max-width: 85%; padding: 12px 16px; border-radius: 18px;
+    font-size: 14px; line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+    animation: msgIn 0.3s ease;
+  }
+  @keyframes msgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .msg-bot { background: rgba(255,255,255,0.06); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg-me { background: rgba(255,181,194,0.18); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .msg-sys { align-self: center; font-size: 11px; color: rgba(255,255,255,0.35); }
+  .msg-crisis { align-self: center; font-size: 13px; color: #fff; background: rgba(231,76,60,0.2); border: 1px solid rgba(231,76,60,0.3); border-radius: 14px; padding: 14px 18px; line-height: 1.8; }
+
+  .input-row {
+    display: flex; gap: 8px; padding: 12px 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: rgba(10,10,30,0.9); backdrop-filter: blur(12px);
+    flex-shrink: 0;
+  }
+  .input-row input {
+    flex: 1; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+    padding: 12px 16px; font-size: 15px; font-family: var(--font-body);
+    background: rgba(255,255,255,0.06); color: #fff; outline: none;
+    -webkit-appearance: none;
+  }
+  .input-row input:focus { border-color: rgba(255,181,194,0.5); }
+  .input-row input::placeholder { color: rgba(255,255,255,0.25); }
+  .input-row .send {
+    border: none; background: linear-gradient(135deg, #FFB5C2, #A8D8EA);
+    color: #1a1a3e; border-radius: 14px; padding: 12px 22px;
+    font-weight: 700; font-size: 14px; cursor: pointer;
+    font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    white-space: nowrap;
+  }
+  .input-row .send:active { opacity: 0.8; }
+
+  .loading { display: inline-flex; gap: 4px; padding: 4px 0; }
+  .loading span { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: dot 1.2s infinite; }
+  .loading span:nth-child(2) { animation-delay: 0.2s; }
+  .loading span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dot { 0%,60%,100%{transform:translateY(0);opacity:0.3} 30%{transform:translateY(-6px);opacity:1} }
+
+  @media (max-width: 400px) {
+    .slogan { font-size: 22px; }
+    .planet-ball { width: 110px; height: 110px; font-size: 46px; }
+    .entry-row { flex-direction: column; gap: 10px; }
+    .entry-btn { flex-direction: row; gap: 10px; padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ 首页 ═══════════════ -->
+<div id="home">
+  <div class="stars-layer" id="starsLayer"></div>
+
+  <div class="slogan">点击星星，点亮译途。</div>
+  <div class="sub-slogan">相信你也是夜空中很亮的那颗星。</div>
+
+  <div class="planet-wrap" id="planetWrap">
+    <div class="planet-glow"></div>
+    <div class="planet-ring"></div>
+    <button class="planet-ball" id="planetBall">🌍</button>
+    <div class="planet-tip">✨ 点击星球，点亮你的译途</div>
+  </div>
+
+  <div class="entry-row">
+    <button class="entry-btn" id="btnMood">
+      <span class="emoji">🌙</span>
+      <span class="title">先点亮心情</span>
+      <span class="sub">情绪自检 · 2分钟</span>
+    </button>
+    <button class="entry-btn" id="btnCareer">
+      <span class="emoji">✨</span>
+      <span class="title">直接点亮译途</span>
+      <span class="sub">职业匹配 · 随时对话</span>
+    </button>
+  </div>
+
+  <div class="social-proof">💫 已有 <strong style="color:#fff;margin:0 4px;">3,284</strong> 位小星轨，点亮了译途</div>
+</div>
+
+<!-- ═══════════════ 聊天区 ═══════════════ -->
+<div id="chat-view">
+  <div class="chat-header">
+    <button class="back" id="btnBack">← 星球</button>
+    <span class="title">✨ 译途星球 · 小星</span>
+    <button class="crisis" id="btnCrisis">我需要帮助</button>
+  </div>
+  <div id="msg-list"></div>
+  <div class="input-row">
+    <input id="chatInput" placeholder="跟小星说说你的迷茫…" autocomplete="off">
+    <button class="send" id="btnSend">发送</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════
+// 译途星球 · 前端 v3.2
+// 轻量 + 可靠 + 直连后端
+// ══════════════════════════════
+
+const BACKEND = (() => {
+  const h = location.hostname;
+  if (h === 'localhost' || h === '127.0.0.1' || h === '') return 'http://localhost:8000';
+  return 'https://transo-planet.up.railway.app'; // ← Railway 部署后会自动获取这个域名
+})();
+
+// ========== DOM ==========
+const home = document.getElementById('home');
+const chatView = document.getElementById('chat-view');
+const msgList = document.getElementById('msg-list');
+const chatInput = document.getElementById('chatInput');
+const btnSend = document.getElementById('btnSend');
+const btnBack = document.getElementById('btnBack');
+const btnCrisis = document.getElementById('btnCrisis');
+
+const history = [];
+let sending = false;
+
+// ========== 音效（合成） ==========
+let audioCtx = null;
+function ctx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function beep(freq, type, vol, dur) {
+  try {
+    const c = ctx();
+    const o = c.createOscillator();
+    const g = c.createGain();
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(); o.stop(c.currentTime + dur);
+  } catch(e) {}
+}
+function sfxStar() { beep(1200,'sine',0.06,0.3); setTimeout(()=>beep(1600,'sine',0.04,0.2),80); }
+function sfxPlanet() { [523,659,784].forEach((f,i)=>setTimeout(()=>beep(f,'sine',0.05,0.8),i*180)); }
+function sfxBtn() { beep(660,'triangle',0.04,0.2); setTimeout(()=>beep(880,'triangle',0.03,0.15),60); }
+
+// ========== Toast ==========
+const CHEERS = [
+  '✨ 你看，星星亮了——你的译途也在发光',
+  '⭐ 相信吗？你也是夜空中很亮的那颗星',
+  '💫 点击星星，点亮译途',
+  '🌟 每颗星星，都是一种可能',
+  '🪐 你的译途，从这里开始发光',
+  '💛 嘿，你比自己想象的要厉害得多',
+];
+function toast(text) {
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = text;
+  document.body.appendChild(el);
+  el.addEventListener('animationend', () => el.remove());
+}
+
+// ========== 生成星星 ==========
+function spawnStars() {
+  const layer = document.getElementById('starsLayer');
+  const colors = ['#FFEAA7','#FFB5C2','#DCD3FF','#FFFFFF','#A8D8EA'];
+  const sizes = [56,64,72,80, 32,36,40,44,48,52, 18,20,22,24,26,28,30, 16,18,20,22,24,26,28];
+
+  // 大星星 4 颗
+  for (let i = 0; i < 4; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `left:${8+Math.random()*84}%;top:${5+Math.random()*85}%;width:${sizes[i]}px;height:${sizes[i]}px;color:${colors[i%5]};animation-delay:${Math.random()*2}s;`;
+    s.innerHTML = `<svg viewBox="0 0 20 20" width="100%" height="100%"><polygon points="10,1 12.5,8 20,8 14,12.5 16,20 10,15.5 4,20 6,12.5 0,8 7.5,8" fill="currentColor" opacity="0.95"/></svg>`;
+    s.addEventListener('click', (e) => { e.stopPropagation(); sfxStar(); s.style.transform='scale(1.6)'; setTimeout(()=>s.style.transform='',250); toast(CHEERS[Math.floor(Math.random()*CHEERS.length)]); });
+    s.addEventListener('touchend', (e) => { e.preventDefault(); s.click(); });
+    layer.appendChild(s);
+  }
+  // 中星星 7 颗
+  for (let i = 4; i < 11; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `left:${3+Math.random()*94}%;top:${3+Math.random()*92}%;width:${sizes[i]}px;height:${sizes[i]}px;color:${colors[i%5]};animation-delay:${Math.random()*3}s;`;
+    s.innerHTML = `<svg viewBox="0 0 20 20" width="100%" height="100%"><polygon points="10,1 12,7 18,7 13,11 15,18 10,14 5,18 7,11 2,7 8,7" fill="currentColor" opacity="0.85"/></svg>`;
+    s.addEventListener('click', (e) => { e.stopPropagation(); sfxStar(); s.style.transform='scale(1.5)'; setTimeout(()=>s.style.transform='',250); toast(CHEERS[Math.floor(Math.random()*CHEERS.length)]); });
+    s.addEventListener('touchend', (e) => { e.preventDefault(); s.click(); });
+    layer.appendChild(s);
+  }
+  // 小星星 13 颗
+  for (let i = 11; i < 24; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `left:${2+Math.random()*96}%;top:${2+Math.random()*96}%;width:${sizes[i]}px;height:${sizes[i]}px;color:${colors[i%5]};animation-delay:${Math.random()*4}s;`;
+    s.innerHTML = `<svg viewBox="0 0 20 20" width="100%" height="100%"><circle cx="10" cy="10" r="7" fill="currentColor" opacity="0.8"/></svg>`;
+    s.addEventListener('click', (e) => { e.stopPropagation(); sfxStar(); s.style.transform='scale(1.6)'; setTimeout(()=>s.style.transform='',250); toast(CHEERS[Math.floor(Math.random()*CHEERS.length)]); });
+    s.addEventListener('touchend', (e) => { e.preventDefault(); s.click(); });
+    layer.appendChild(s);
+  }
+}
+spawnStars();
+
+// ========== 星球点击 ==========
+document.getElementById('planetBall').addEventListener('click', (e) => {
+  e.stopPropagation();
+  sfxPlanet();
+  const ball = document.getElementById('planetBall');
+  ball.style.transform = 'scale(1.12)';
+  setTimeout(() => ball.style.transform = '', 350);
+  toast('🪐 点击星星，点亮译途。');
+});
+
+// ========== 入口按钮 → 进入聊天 ==========
+function enterChat(firstMsg) {
+  home.style.display = 'none';
+  chatView.classList.add('open');
+  sfxBtn();
+  // 清空
+  msgList.innerHTML = '';
+  history.length = 0;
+  // 开场白
+  addMsg('bot', '嗨，我是小星 🌙 你的 AI 师姐。\n\n我不是真人，也不是心理医生——但我走过你正在走的路。\n\n你想先聊聊心情，还是直接告诉我你做过什么事，我帮你看看能匹配什么职业方向？');
+  if (firstMsg) {
+    history.push({role:'user', content: firstMsg});
+    addMsg('me', firstMsg);
+    callBackend();
+  }
+}
+
+document.getElementById('btnMood').addEventListener('click', () => {
+  enterChat('我最近有点焦虑，想先聊聊我的心情');
+});
+document.getElementById('btnCareer').addEventListener('click', () => {
+  enterChat('我想看看我做过的事能匹配什么职业方向');
+});
+
+// ========== 返回首页 ==========
+btnBack.addEventListener('click', () => {
+  chatView.classList.remove('open');
+  home.style.display = '';
+  msgList.innerHTML = '';
+  history.length = 0;
+});
+
+// ========== 聊天消息 ==========
+function addMsg(role, text) {
+  const div = document.createElement('div');
+  div.className = 'msg msg-' + (role==='user'?'me':role==='bot'?'bot':role==='crisis'?'crisis':'sys');
+  div.textContent = text;
+  msgList.appendChild(div);
+  msgList.scrollTop = msgList.scrollHeight;
+}
+
+function showLoading() {
+  const div = document.createElement('div');
+  div.className = 'msg msg-bot';
+  div.id = 'loading-div';
+  div.innerHTML = '<div class="loading"><span></span><span></span><span></span></div>';
+  msgList.appendChild(div);
+  msgList.scrollTop = msgList.scrollHeight;
+}
+
+function hideLoading() {
+  const el = document.getElementById('loading-div');
+  if (el) el.remove();
+}
+
+// ========== 调用后端 ==========
+async function callBackend() {
+  if (sending) return;
+  sending = true;
+  btnSend.disabled = true;
+  showLoading();
+
+  try {
+    const r = await fetch(BACKEND + '/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history })
+    });
+    hideLoading();
+
+    if (!r.ok) {
+      addMsg('sys', '（小星暂时连不上，请稍后再试）');
+      return;
+    }
+
+    const data = await r.json();
+    if (data.meta && data.meta.crisis) {
+      addMsg('crisis', data.reply);
+      addMsg('sys', '⚠ 已切换危机支持模式');
+    } else {
+      addMsg('bot', data.reply);
+    }
+    history.push({ role: 'assistant', content: data.reply });
+  } catch (e) {
+    hideLoading();
+    addMsg('sys', '（网络问题，深呼吸一下，过会儿再试。紧急情况请拨打 12356）');
+  } finally {
+    sending = false;
+    btnSend.disabled = false;
+    chatInput.focus();
+  }
+}
+
+// ========== 发送消息 ==========
+btnSend.addEventListener('click', () => {
+  const text = chatInput.value.trim();
+  if (!text || sending) return;
+  addMsg('me', text);
+  history.push({ role: 'user', content: text });
+  chatInput.value = '';
+  callBackend();
+});
+
+chatInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    btnSend.click();
+  }
+});
+
+// ========== 危机按钮 ==========
+btnCrisis.addEventListener('click', () => {
+  addMsg('me', '我需要帮助');
+  history.push({ role: 'user', content: '我现在很难受，撑不下去了' });
+  callBackend();
+});
+</script>
+</body>
+</html>

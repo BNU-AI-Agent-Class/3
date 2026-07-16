@@ -1,0 +1,132 @@
+{
+  "companies": [
+    {
+      "name": "SHEIN",
+      "industry": "跨境电商/品牌出海",
+      "industries": ["品牌出海", "数字营销", "内容运营"],
+      "highlight": "全球增长最快的快时尚电商,总部在广州,全球运营",
+      "why_women_friendly": "女性员工占比超60%,高管团队女性比例高",
+      "note": "大量需要英语+市场复合能力的岗位"
+    },
+    {
+      "name": "Anker 安克创新",
+      "industry": "跨境电商/消费电子",
+      "industries": ["品牌出海", "数字营销", "内容运营"],
+      "highlight": "中国出海品牌标杆,充电品类全球第一",
+      "why_women_friendly": "弹性工作制,注重员工成长",
+      "note": "海外市场专员/内容运营大量招英语专业"
+    },
+    {
+      "name": "小红书",
+      "industry": "内容社区/生活方式",
+      "industries": ["内容运营", "新媒体运营", "品牌营销", "社区管理"],
+      "highlight": "中国最有影响力的生活方式社区,总部上海",
+      "why_women_friendly": "女性员工占比高,文化包容开放",
+      "note": "内容审核/社区运营/品牌合作大量招语言类毕业生"
+    },
+    {
+      "name": "米哈游 miHoYo",
+      "industry": "游戏/互动娱乐",
+      "industries": ["游戏本地化", "内容运营", "品牌营销"],
+      "highlight": "原神/崩坏系列开发商,中国游戏出海第一名",
+      "why_women_friendly": "知名福利好,包三餐,注重员工体验",
+      "note": "本地化团队大量招聘语言专业,英语+小语种更佳"
+    },
+    {
+      "name": "多邻国 Duolingo",
+      "industry": "教育科技/语言学习",
+      "industries": ["教育培训", "内容运营", "用户研究"],
+      "highlight": "全球最大的语言学习平台,NASDAQ上市",
+      "why_women_friendly": "包容性文化标杆,远程友好",
+      "note": "课程内容/用户研究岗非常适合语言学背景"
+    },
+    {
+      "name": "字节跳动",
+      "industry": "互联网/内容平台",
+      "industries": ["内容运营", "项目管理", "用户研究", "商务拓展"],
+      "highlight": "抖音/TikTok母公司,全球最大的内容平台",
+      "why_women_friendly": "内部有 Women@ByteDance 社群",
+      "note": "海外内容运营大量招英语/小语种专业"
+    },
+    {
+      "name": "网易有道",
+      "industry": "教育科技/AI",
+      "industries": ["教育培训", "技术文档", "内容运营"],
+      "highlight": "有道词典/翻译/云笔记,AI+教育先行者",
+      "why_women_friendly": "注重员工学习成长",
+      "note": "词典内容/翻译产品岗非常适合英语专业"
+    },
+    {
+      "name": "大疆 DJI",
+      "industry": "硬件/无人机/机器人",
+      "industries": ["品牌出海", "技术文档", "项目管理"],
+      "highlight": "全球无人机市场占有率超70%",
+      "why_women_friendly": "工程师文化+国际化团队",
+      "note": "技术文档/海外市场岗需要英语+逻辑能力"
+    },
+    {
+      "name": "LVMH 路威酩轩",
+      "industry": "奢侈品/零售",
+      "industries": ["品牌营销", "客户成功", "内容运营"],
+      "highlight": "全球最大奢侈品集团,旗下 75+品牌",
+      "why_women_friendly": "DEI政策完善,女性领导力项目",
+      "note": "零售培训/品牌传播岗需要双语能力"
+    },
+    {
+      "name": "丁香医生",
+      "industry": "健康内容/数字医疗",
+      "industries": ["内容运营", "新媒体运营", "用户研究"],
+      "highlight": "中国最有影响力的健康科普平台",
+      "why_women_friendly": "注重专业+温度,文化包容",
+      "note": "内容编辑岗需要精准的文字能力和共情力"
+    },
+    {
+      "name": "B站 bilibili",
+      "industry": "视频社区/内容平台",
+      "industries": ["内容运营", "社区管理", "品牌营销", "游戏本地化"],
+      "highlight": "中国最大的年轻人文化社区,NASDAQ上市",
+      "why_women_friendly": "年轻文化,多元包容",
+      "note": "社区运营/内容合作大量招语言类毕业生"
+    },
+    {
+      "name": "北森 Beisen",
+      "industry": "HR SaaS/人力资源科技",
+      "industries": ["人力资源", "客户成功", "项目管理"],
+      "highlight": "中国最大的HR SaaS公司",
+      "why_women_friendly": "HR行业天然关注人,文化温暖",
+      "note": "客户成功岗需要'理解人+说人话',英语专业天然优势"
+    },
+    {
+      "name": "奥美 Ogilvy",
+      "industry": "广告/营销服务",
+      "industries": ["品牌营销", "数字营销", "内容运营"],
+      "highlight": "全球最知名的广告公司之一",
+      "why_women_friendly": "创意行业天然多元包容",
+      "note": "文案/策略岗是英语专业经典去向,但需要作品集"
+    },
+    {
+      "name": "欧莱雅 L'Oreal",
+      "industry": "美妆/快消",
+      "industries": ["品牌营销", "数字营销", "商务拓展"],
+      "highlight": "全球最大的美妆集团,管培生项目含金量高",
+      "why_women_friendly": "女性高管比例高,性别平等标杆",
+      "note": "市场营销管培生不限专业,英语好是前提"
+    },
+    {
+      "name": "莉莉丝 Lilith Games",
+      "industry": "游戏/出海",
+      "industries": ["游戏本地化", "内容运营", "品牌出海"],
+      "highlight": "万国觉醒/剑与远征开发商,中国游戏出海前三",
+      "why_women_friendly": "扁平化管理,注重创造力和员工成长",
+      "note": "海外运营/本地化岗大量招语言专业"
+    },
+    {
+      "name": "新世相",
+      "industry": "内容/新媒体",
+      "industries": ["内容运营", "新媒体运营", "品牌营销"],
+      "highlight": "中国头部新媒体公司,多篇千万级爆款",
+      "why_women_friendly": "内容团队女性多,注重内容温度",
+      "note": "内容编辑岗需要共情力和文字力"
+    }
+  ]
+}
